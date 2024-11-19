@@ -14,6 +14,7 @@ namespace ShowUpperAvg
         }
         static void PrintArray(int[] array)
         {
+            //uhihg
             foreach (int el in array)
             {
                 Console.Write(el + " ");
