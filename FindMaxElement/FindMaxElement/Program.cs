@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static void FillArray(int[] array)
+        public static void FillArray(int[] array)
         {
             Random rnd = new Random();
             for (int i = 0; i < array.Length; i++)
@@ -10,7 +10,8 @@
                 array[i] = rnd.Next(-1000, 1000);
             }
         }
-        static void PrintArray(int[] array)
+        
+        public  static void PrintArray(int[] array)
         {
             foreach (int i in array)
             {
@@ -18,7 +19,8 @@
             }
             Console.WriteLine();
         }
-        static int FindMaxNum(int[] array)
+        
+        public  static int FindMaxNum(int[] array)
         {
             int max = 0,min = 0;
             for (int i = 0; i < array.Length; i++)
@@ -33,10 +35,10 @@
                 }
                 
             }
-            //return max; 
             return max-min;
         }
-        static void Main(string[] args)
+        
+        public  static void Main(string[] args)
         {
             Console.WriteLine("Длинна массива: ");
             int Lenght = int.Parse(Console.ReadLine());

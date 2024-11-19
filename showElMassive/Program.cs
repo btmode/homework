@@ -11,14 +11,17 @@
                 array[i] = rnd.Next(50);
             }
         }
+
         static void PrintArray(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
                 Console.Write(array[i] + " ");
             }
+
             Console.WriteLine();
         }
+
         static int[] ChoiceBigEl(int[] array)
         {
             int count = 0;
@@ -29,7 +32,7 @@
                     count++;
                 }
             }
-           
+
             int[] result = new int[count];
             int index = 0;
 
@@ -58,9 +61,6 @@
             int[] res = ChoiceBigEl(array);
             Console.WriteLine("Ваш новый массив: ");
             PrintArray(res);
-
-
         }
     }
 }
-

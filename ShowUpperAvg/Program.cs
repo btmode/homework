@@ -1,5 +1,4 @@
-﻿using System.Runtime.Intrinsics.X86;
-
+﻿
 namespace ShowUpperAvg
 {
     internal class Program
@@ -12,6 +11,7 @@ namespace ShowUpperAvg
                 array[i] = rnd.Next(100);
             }
         }
+
         static void PrintArray(int[] array)
         {
             //uhihg
@@ -19,30 +19,39 @@ namespace ShowUpperAvg
             {
                 Console.Write(el + " ");
             }
+
             Console.WriteLine();
         }
-        static void UpperAvg(int[] array)
-        {            
-            int count = 0;
+
+        public static int GetSum(int[] array)
+        {
+            int sum = 0;
             foreach (int el in array)
             {
-                count += el;
-              
+                sum += el;
             }
 
-            double res = (double)count / array.Length;
-            res = Math.Round(res,2);
+            return sum;
+        }
+
+        static void UpperAvg(int[] array)
+        {
+            var sum = GetSum(array);
+
+            double res = (double)sum / array.Length;
+            res = Math.Round(res, 2);
             Console.WriteLine($"Avg: {res}");
 
             Console.Write("Числа выше среднего: ");
             foreach (int el in array)
             {
-                if (el > res) 
+                if (el > res)
                 {
-                    Console.Write(el+" ");
+                    Console.Write(el + " ");
                 }
             }
         }
+
         static void Main(string[] args)
         {
             Console.Write("Длина массива: ");
@@ -53,8 +62,6 @@ namespace ShowUpperAvg
             PrintArray(array);
 
             UpperAvg(array);
-           
-
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace FindPositive
 {
-    internal class Program
+    internal class FindPositive
     {
         static void FillArray(int[] array)
         {
