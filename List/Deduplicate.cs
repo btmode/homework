@@ -1,8 +1,9 @@
 ﻿using System.Reflection.Metadata;
 using System.Security.Cryptography;
+
 namespace ListMassive
 {
-    internal class RemoveDublicatEl
+    internal class DeduplicateTask
     {
         public static void FillList(List<int> list)
         {
@@ -14,11 +15,12 @@ namespace ListMassive
             {
                 list.Add(rnd.Next(1, 20));
             }
+
             Console.WriteLine(string.Join(", ", list));
         }
-        public static void RemoveDublcat(List<int> list)
+
+        public static void Deduplicate(List<int> list)
         {
-            list.Sort();
             for (int i = 0; i < list.Count; i++)
             {
                 for (int j = i + 1; j < list.Count; j++)
@@ -26,20 +28,19 @@ namespace ListMassive
                     if (list[i] == list[j])
                     {
                         list.RemoveAt(i);
-
                     }
                 }
-                Console.Write(list[i] + " ");
             }
-
         }
-        static void Main(string[] args)
+
+        public static void Start(string[] args)
         {
             var list = new List<int>();
 
             FillList(list);
-            RemoveDublcat(list);
+            Deduplicate(list);
 
+            Console.WriteLine(string.Join(", ", list));
         }
     }
 }
