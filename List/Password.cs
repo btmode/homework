@@ -1,48 +1,42 @@
 ﻿using System.Xml;
 
-namespace scharp;
+namespace List;
+
+class ValidationOptions
+{
+    public int minLength;
+    public int maxLength;
+    public bool? useDigits; // true - нужно использовать цифры, false - не нужно, null - не важно
+    public bool? useUpper;
+    public bool? useLower;
+    public bool? useSpecialSymbols;
+}
 
 internal class Password
 {
-    public static bool CheckLengthLogin(List<char> login)
+    public static bool IsLengthValid(List<char> login, ValidationOptions options)
     {
-        return login.Count >= 6 && login.Count <= 12;
+        return login.Count >= options.minLength && login.Count <= options.maxLength;
     }
 
-    public static bool UseSpecSymbolLogin(List<char> login)
+    public static bool HasSpecSymbol(List<char> value, ValidationOptions options)
     {
-        string symbolList = "' ! \" # $ % & ’ ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~. '";
-        foreach (var i in login)
-        {
-            if (symbolList.Contains(i))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+        if (options.useSpecialSymbols == null) return true;
 
-    public static bool CheckLengthPass(List<char> password)
-    {
-        return password.Count >= 8 && password.Count <= 16;
-    }
-
-    public static bool UseSpecSymbolPass(List<char> password)
-    {
-        string symbolList = "!#$%&()*+,-./:<=>?@[]_{|}";
-        foreach (var i in password)
+        var symbolList = "!#$%&()*+,-./:<=>?@[]_{|}";
+        foreach (var i in value)
         {
             if (symbolList.Contains(i))
             {
                 return true;
             }
         }
+
         return false;
     }
 
     public static bool UseDigits(List<char> password)
     {
-
         foreach (var i in password)
         {
             if (char.IsDigit(i))
@@ -50,6 +44,7 @@ internal class Password
                 return true;
             }
         }
+
         return false;
     }
 
@@ -62,11 +57,12 @@ internal class Password
                 return true;
             }
         }
+
         return false;
     }
 
     public static bool UseLower(List<char> password)
-    {        
+    {
         foreach (var i in password)
         {
             if (char.IsLower(i))
@@ -74,9 +70,11 @@ internal class Password
                 return true;
             }
         }
+
         return false;
     }
-    public static void typeRule()
+
+    public static void PrintRules()
     {
         Console.WriteLine("Минимальная и максимальная длина логин (6-12 символов)");
         Console.WriteLine("В логине нельзя использовать специальные символы");
@@ -87,75 +85,78 @@ internal class Password
         Console.WriteLine("Пароль можно сделать на EN и Ru или же оба варианта вместе");
         Console.WriteLine("////");
     }
-    static void Main(string[] args)
+
+    public static void Start()
     {
-        typeRule();
+        PrintRules();
+
+        var names = new List<string> { "John", "Bob", "Alice", "Eve", "Max" };
+
+        ValidationOptions passOptions = new()
+        {
+            minLength = 8, maxLength = 16, useDigits = true, useUpper = true, useLower = true, useSpecialSymbols = true
+        };
+        ValidationOptions loginOptions = new()
+        {
+            minLength = 6, maxLength = 12, useDigits = true, useUpper = true, useLower = true, useSpecialSymbols = false
+        };
+
         while (true)
         {
-
             Console.Write("Введите логин: ");
-            var length2 = Console.ReadLine();
+            var login = new List<char>(Console.ReadLine()); // "лоршгн*:ЕЛООПг!!"№;%:?*(не123гаГАг"
+
             Console.Write("Введите пароль: ");
-            var length = Console.ReadLine();
+            var password = new List<char>(Console.ReadLine());
 
-            var login = new List<char>(length2);
-            var password = new List<char>(length);
-
-            bool isLengthLogin = CheckLengthLogin(login);
-            bool hasSpecSymbolLogin = UseSpecSymbolLogin(login);
-
-            bool isLengthPass = CheckLengthPass(password);
             bool hasSpecSymbolPass = UseSpecSymbolPass(password);
             bool hasDigitPass = UseDigits(password);
             bool hasUpperPass = UseUpper(password);
             bool hasLowerPass = UseLower(password);
 
-            if ((isLengthLogin && hasSpecSymbolLogin) &&
-                (isLengthPass && hasSpecSymbolPass && hasDigitPass && hasUpperPass && hasLowerPass))
-            {
-                Console.WriteLine("Логин создан успешно.");
-                Console.WriteLine("Пароль создан успешно.");
-                Console.WriteLine("Ваш аккаунт успешно создан!");
-                break;
+            // if ((isLengthLogin && hasSpecSymbolLogin) &&
+            //     (isLengthPass && hasSpecSymbolPass && hasDigitPass && hasUpperPass && hasLowerPass))
+            // {
+            //     Console.WriteLine("Логин создан успешно.");
+            //     Console.WriteLine("Пароль создан успешно.");
+            //     Console.WriteLine("Ваш аккаунт успешно создан!");
+            //     break;
+            // }
 
-            }
-            if (!isLengthLogin)
-            {
+            if (!IsLengthValid(login, loginOptions))
                 Console.WriteLine("Ошибка: длина логина должна быть от 6 до 12 символов");
-            }
-            if (!hasSpecSymbolLogin)
-            {
+
+            if (HasSpecSymbol(login, loginOptions))
                 Console.WriteLine("Ошибка: логин не должен содержать специальные символы");
-            }
 
+            // if (isLengthPass && hasSpecSymbolPass && hasDigitPass && hasUpperPass && hasLowerPass)
+            // {
+            //     Console.WriteLine("Пароль создан успешно!");
+            //     break;
+            // }
 
-            if (isLengthPass && hasSpecSymbolPass && hasDigitPass && hasUpperPass && hasLowerPass)
-            {
-                Console.WriteLine("Пароль создан успешно!");
-                break;
-            }
-            if (!isLengthPass)
-            {
+            if (!IsLengthValid(password, passOptions))
                 Console.WriteLine("Ошибка: длина пароля должна быть от 8 до 16 символов");
-            }
+
             if (!hasSpecSymbolPass)
             {
                 Console.WriteLine("Ошибка: пароль должен содержать хотя бы один специальный символ");
             }
+
             if (!hasDigitPass)
             {
                 Console.WriteLine("Ошибка: пароль должен содержать хотя бы одну цифру");
             }
+
             if (!hasUpperPass)
             {
                 Console.WriteLine("Ошибка: пароль должен содержать хотя бы одну заглавную букву");
             }
+
             if (!hasLowerPass)
             {
                 Console.WriteLine("Ошибка: пароль должен содержать хотя бы одну строчную букву");
             }
         }
-
     }
 }
-

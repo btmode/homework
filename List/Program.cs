@@ -6,5 +6,6 @@ class Program
     {
         // SplitElMassiveMax.Start();
         // FindTheReplaceToNum.Start();
+        Password.Start();
     }
 }
