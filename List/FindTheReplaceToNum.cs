@@ -1,6 +1,6 @@
-﻿namespace FindTheReplaceToNum
+﻿namespace List
 {
-    internal class Program
+    internal class FindTheReplaceToNum
     {
         public static void FillList(List<int> list, int lenght)
         {
@@ -9,10 +9,9 @@
             {
                 list.Add(rnd.Next(1, 20));
             }
+
             Console.Write("Ваш List: ");
             Console.WriteLine(string.Join(" ", list));
-
-
         }
 
         public static void Limiter(int lenght)
@@ -23,27 +22,32 @@
             }
         }
 
-        public static void ReplaceNum(List<int> list, int lenght)
+        public static void ReplaceNum(int length)
         {
             var res = 1;
 
-            for (int i = 1; i <= list.Count; i++)
+            for (int i = 1; i <= length; i++)
             {
+                if (res * i == 0)
+                {
+                    Console.WriteLine(res);
+                    Console.WriteLine(i);
+                }
                 res *= i;
             }
+
             Console.Write($"Кол-во возможных вариаций: {res}");
         }
 
-        static void Main(string[] args)
+        public static void Start()
         {
             Console.WriteLine("Введите длинну массива: ");
-            var lenght = int.Parse(Console.ReadLine());
+            var length = int.Parse(Console.ReadLine());
 
-            List<int> list = new List<int>(lenght);
-            FillList(list, lenght);
-            Limiter(lenght);
-            ReplaceNum(list, lenght);
-
+            var list = new List<int>(length);
+            FillList(list, length);
+            // Limiter(length);
+            ReplaceNum(length);
         }
     }
 }

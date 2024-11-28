@@ -1,8 +1,6 @@
-﻿using System.Xml;
-
-namespace SplitElMassiveMax
+﻿namespace List
 {
-    internal class Program
+    internal class SplitElMassiveMax
     {
         public static void FillArray(List<int> list, int lenght)
         {
@@ -11,13 +9,13 @@ namespace SplitElMassiveMax
             {
                 list.Add(rnd.Next(1, 50));
             }
+
             Console.Write("Сгенерированный массив: ");
             Console.WriteLine(string.Join(", ", list));
         }
-        //g
-        public static int FindMaxEl(List<int> list)
-        {
 
+        public static int FindMax(List<int> list)
+        {
             var max = 0;
             for (int i = 0; i < list.Count; i++)
             {
@@ -26,39 +24,34 @@ namespace SplitElMassiveMax
                     max = list[i];
                 }
             }
+
             return max;
         }
 
         public static void SplitOnMaxEl(List<int> list, int max)
         {
-
             var res = new List<double>();
             for (int i = 0; i < list.Count; i++)
             {
-                double result = (double)list[i] / max;                
-                res.Add(result);
-                Math.Round(result, 2);                
+                var result = (double)list[i] / max;
+                res.Add(Math.Round(result, 2));
             }
-            
-            Console.WriteLine(string.Join(", ", res));
 
+            Console.WriteLine(string.Join(", ", res));
         }
 
-        static void Main(string[] args)
+        public static void Start()
         {
-            Console.WriteLine("Введите длину: ");
+            Console.Write("Введите длину: ");
             var lenght = int.Parse(Console.ReadLine());
             var list = new List<int>(lenght);
 
             FillArray(list, lenght);
 
-            int max = FindMaxEl(list);
+            var max = FindMax(list);
             Console.WriteLine($"Максимальный элемент: {max}");
 
             SplitOnMaxEl(list, max);
-
-
-
         }
     }
 }
