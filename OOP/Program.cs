@@ -1,55 +1,28 @@
-﻿var alex = new Person() { Age = 20, City = "Moscow", Name = "Alex" };
-var john = new Person() { Age = 30, City = "New York", Name = "John" };
-var max = new Person() { Age = 40, City = "London", Name = "Max" };
+﻿var alex = new Person() { Name = "Александр", City = "Москва", Age = 20 };
+var pavel = new Person() { Name = "Павел", City = "Москва", Age = 25 };
 
-john.PrintInfo();
-Person.StaticPrintInfo("John", "New York", 30);
+alex.PrintInfo();
+pavel.PrintInfo();
 
-var operations = new Operations();
-// operations.Sum(1, 2);
+// { "Name": "Александр", "City": "Москва", "Age": 20 }
 
-// статический метод - тот метод, для которого не нужно создавать экземпляр
-Operations.Sum(1, 2);
-
-operations.Sub(1, 2);
-
-var operations2 = new Operations();
-
-Operations.Sum(1, 2);
+Person.PrintInfo("Александр", "Москва", 20);
 
 class Person
 {
     public string Name;
     public string City;
     public int Age;
-
-    private string GetPrintString()
-    {
-        return $"Name: {Name}, City: {City}, Age: {Age}";
-    }
-
+    
+    // Не статический - относится к экземпляру класса Person (alex, pavel)
     public void PrintInfo()
     {
-        // this - тот объект, у кого вызвали этот метод
-        // Console.WriteLine($"Name: {this.Name}");
-        Console.WriteLine(GetPrintString());
+        Console.WriteLine($"Привет! Меня зовут {Name}, я живу в городе {City} и мне {Age} лет.");
     }
 
-    public static void StaticPrintInfo(string name, string city, int age)
+    // Статический - относится к самому классу Person
+    public static void PrintInfo(string name, string city, int age)
     {
-        Console.WriteLine();
-    }
-}
-
-class Operations
-{
-    public static int Sum(int a, int b)
-    {
-        return a + b;
-    }
-
-    public int Sub(int a, int b)
-    {
-        return a - b;
+        Console.WriteLine($"Привет! Меня зовут {name}, я живу в городе {city} и мне {age} лет.");
     }
 }

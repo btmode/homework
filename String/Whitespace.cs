@@ -2,17 +2,15 @@
 {
     class Whitespace
     {
-
         public static void Start()
         {
             Console.Write("Введите текст: ");
-            string text = Console.ReadLine();
+            var text = Console.ReadLine();
 
-            string[] textMass;
-            textMass = text.Split(' ');
+            var words = text.Split(' ');
 
             Console.Write("Количество слов: ");
-            Console.WriteLine(textMass.Length);
+            Console.WriteLine(words.Length);
         }
     }
 }

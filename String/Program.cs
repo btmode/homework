@@ -11,7 +11,7 @@ namespace String
     {
         static void Main()
         {
-            //Plural.Start();
+            // Plural.Start();
             Sum.Start();
             //Whitespace.Start();
 

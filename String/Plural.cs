@@ -4,8 +4,8 @@
     {
         public static void DeclensionToEnd(int number)
         {
-            int lastTwoDigits = number % 100; 
-            int lastDigit = number % 10;                      
+            var lastTwoDigits = number % 100; 
+            var lastDigit = number % 10;                      
 
             if (lastTwoDigits >= 11 && lastTwoDigits <= 19)
             {
@@ -27,10 +27,11 @@
 
         public static void Start()
         {
-            Console.WriteLine("Введите число: ");
-            int number = int.Parse(Console.ReadLine());
+            for (int i = 1; i < 100; i++)
+            {
+                DeclensionToEnd(i);
+            }
 
-            DeclensionToEnd(number);
         }
 
     }

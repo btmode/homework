@@ -1,8 +1,13 @@
-﻿using System.Xml;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace List;
 
-class ValidationOptions
+enum Lang
+{
+    Rus, En, Both
+}
+
+public class ValidationOptions
 {
     public int minLength;
     public int maxLength;
@@ -10,13 +15,19 @@ class ValidationOptions
     public bool? useUpper;
     public bool? useLower;
     public bool? useSpecialSymbols;
+    public Lang lang;
 }
 
 internal class Password
 {
-    public static bool IsLengthValid(List<char> login, ValidationOptions options)
+    public static bool IsLengthValid(List<char> value, ValidationOptions options)
     {
-        return login.Count >= options.minLength && login.Count <= options.maxLength;
+        return value.Count >= options.minLength && value.Count <= options.maxLength;
+    }
+    
+    public static bool IsLengthValid2(string value, ValidationOptions options)
+    {
+        return value.Length >= options.minLength && value.Length <= options.maxLength;
     }
 
     public static bool HasSpecialSymbol(List<char> value, ValidationOptions options)
@@ -35,7 +46,7 @@ internal class Password
         return false;
     }
 
-    public static bool UseDigits(List<char> password, ValidationOptions options)
+    public static bool HasDigits(List<char> password, ValidationOptions options)
     {
         foreach (var i in password)
         {
@@ -48,7 +59,7 @@ internal class Password
         return false;
     }
 
-    public static bool UseUpper(List<char> password, ValidationOptions options)
+    public static bool HasUpper(List<char> password, ValidationOptions options)
     {
         foreach (var i in password)
         {
@@ -61,7 +72,7 @@ internal class Password
         return false;
     }
 
-    public static bool UseLower(List<char> password, ValidationOptions options)
+    public static bool HasLower(List<char> password, ValidationOptions options)
     {
         foreach (var i in password)
         {
@@ -89,6 +100,10 @@ internal class Password
     public static void Start()
     {
         PrintRules();
+        
+        var validator = new Validator(); // Validator - класс, validator - экземпляр класса
+        var passMessage = validator.Validate("какой-то пароль", passOptions); // null, когда все ок
+        var loginMessage = validator.Validate("какой-то логин", loginOptions); // "Длина не может быть меньше 6 символов"
 
         //var names = new List<string> { "John", "Bob", "Alice", "Eve", "Max" };
 
@@ -99,7 +114,8 @@ internal class Password
             useDigits = true,
             useUpper = true,
             useLower = true,
-            useSpecialSymbols = true
+            useSpecialSymbols = true,
+            lang = Lang.Rus
         };
         ValidationOptions loginOptions = new()
         {
@@ -108,16 +124,18 @@ internal class Password
             useDigits = true,
             useUpper = true,
             useLower = true,
-            useSpecialSymbols = false
+            useSpecialSymbols = false,
+            lang = Lang.Both
         };
 
         while (true)
         {
             Console.Write("Введите логин: ");
-            var login = new List<char>(Console.ReadLine());
+            var login = new List<char>(Console.ReadLine() ?? string.Empty);
 
             Console.Write("Введите пароль: ");
-            var password = new List<char>(Console.ReadLine());
+            var password = new List<char>(Console.ReadLine() ?? string.Empty);
+            string password2 = Console.ReadLine() ?? "";
 
             bool isValid = true;
 
@@ -138,27 +156,34 @@ internal class Password
                 Console.WriteLine("Ошибка: длина пароля должна быть от 8 до 16 символов");
                 isValid = false;
             }
+            
+            if (!IsLengthValid2(password2, passOptions))
+            {
+                Console.WriteLine("Ошибка: длина пароля должна быть от 8 до 16 символов");
+                isValid = false;
+            }
             if (!HasSpecialSymbol(password, passOptions))
             {
                 Console.WriteLine("Ошибка: пароль должен содержать хотя бы один специальный символ");
                 isValid = false;
             }
-            if (!UseDigits(password, passOptions))
+            if (!HasDigits(password, passOptions))
             {
                 Console.WriteLine("Ошибка: пароль должен содержать хотя бы одну цифру");
                 isValid = false;
             }
-            if (!UseUpper(password, passOptions))
+            if (!HasUpper(password, passOptions))
             {
                 Console.WriteLine("Ошибка: пароль должен содержать хотя бы одну заглавную букву");
                 isValid = false;
             }
-            if (!UseLower(password, passOptions))
+            if (!HasLower(password, passOptions))
             {
                 Console.WriteLine("Ошибка: пароль должен содержать хотя бы одну строчную букву");
                 isValid = false;
             }
-            if (isValid == true)
+            
+            if (isValid)
             {
                 Console.WriteLine("Вы зарегистрировались!");
                 break;
