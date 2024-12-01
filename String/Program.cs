@@ -1,21 +1,20 @@
-﻿// int[] array = [1, 2, 3];
-//
-// Console.WriteLine(array);
-//
-// foreach (var x in array)
-// {
-//     Console.WriteLine(x);
-// }
-//
-// Console.WriteLine(string.Join(", ", array));
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-// char x = 'x';
-// var hello = "hello";
-//
-// foreach (var letter in hello)
-// {
-//     if (letter == 'h')
-//     {
-//         
-//     }
-// }
+namespace String
+{
+    class Program
+    {
+        static void Main()
+        {
+            //Plural.Start();
+            Sum.Start();
+            //Whitespace.Start();
+
+        }
+    }
+}
