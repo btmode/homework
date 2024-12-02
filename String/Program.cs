@@ -12,7 +12,7 @@ namespace String
         static void Main()
         {
             // Plural.Start();
-            Sum.Start();
+            //Sum.Start();
             //Whitespace.Start();
 
         }
