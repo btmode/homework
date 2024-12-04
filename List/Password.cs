@@ -1,12 +1,15 @@
-﻿using System.Runtime.InteropServices;
+﻿namespace List;
 
-namespace List;
-
+// Вынести в отдельный файл
 public enum Lang
 {
-    Rus, En, Both
+    Rus,
+    En,
+    Both,
+    Either // - любой, без разницы
 }
 
+// Вынести в отдельный файл
 public class ValidationOptions
 {
     public int minLength;
@@ -17,9 +20,9 @@ public class ValidationOptions
     public bool? useSpecialSymbols;
     public Lang lang;
 }
+
 public static class Password
 {
-
     private static void PrintRules()
     {
         Console.WriteLine("Минимальная и максимальная длина логин (6-12 символов)");
@@ -46,6 +49,7 @@ public static class Password
             useSpecialSymbols = true,
             lang = Lang.Both
         };
+        
         ValidationOptions loginOptions = new()
         {
             minLength = 6,
@@ -57,9 +61,9 @@ public static class Password
             lang = Lang.Both
         };
 
-        var validatorlogin = new ValidatorLogin();
-        var validatorPass = new ValidatorPass();
-
+        var validatorlogin = new Validator(loginOptions);
+        var validatorPass = new Validator(passOptions);
+        
         while (true)
         {
             Console.Write("Введите логин: ");
@@ -68,13 +72,13 @@ public static class Password
             Console.Write("Введите пароль: ");
             var password = Console.ReadLine() ?? "";
 
-            var loginMessage = ValidatorLogin.ValidateLogin(login, loginOptions);
-            if (loginMessage != null)
+            var loginValidationResult = validatorlogin.Validate(login);
+            if (!loginValidationResult.IsValid)
             {
-                Console.WriteLine(loginMessage);
+                Console.WriteLine(loginValidationResult.Message);
             }
-            
-            var passMessage = ValidatorPass.ValidatePass(password, passOptions);
+
+            var passMessage = validatorPass.ValidatePass(password);
             if (passMessage != null)
             {
                 Console.WriteLine(passMessage);
