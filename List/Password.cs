@@ -57,7 +57,8 @@ public static class Password
             lang = Lang.Both
         };
 
-        var validator = new Validator();
+        var validatorlogin = new ValidatorLogin();
+        var validatorPass = new ValidatorPass();
 
         while (true)
         {
@@ -67,13 +68,13 @@ public static class Password
             Console.Write("Введите пароль: ");
             var password = Console.ReadLine() ?? "";
 
-            var loginMessage = Validator.Validate(login, loginOptions, isLogin: true);
+            var loginMessage = ValidatorLogin.ValidateLogin(login, loginOptions);
             if (loginMessage != null)
             {
                 Console.WriteLine(loginMessage);
             }
-
-            var passMessage = Validator.Validate(password, passOptions);
+            
+            var passMessage = ValidatorPass.ValidatePass(password, passOptions);
             if (passMessage != null)
             {
                 Console.WriteLine(passMessage);
