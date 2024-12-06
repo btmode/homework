@@ -1,6 +1,6 @@
 ﻿namespace List;
 
-class Program
+class Start
 {
     static void Main()
     {

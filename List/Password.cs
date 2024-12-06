@@ -1,25 +1,28 @@
-﻿namespace List;
+﻿using static List.IsEnum;
+
+
+namespace List;
 
 // Вынести в отдельный файл
-public enum Lang
-{
-    Rus,
-    En,
-    Both,
-    Either // - любой, без разницы
-}
+//public enum Lang
+//{
+//    Rus,
+//    En,
+//    Both,
+//    Either // - любой, без разницы
+//}
 
 // Вынести в отдельный файл
-public class ValidationOptions
-{
-    public int minLength;
-    public int maxLength;
-    public bool? useDigits; // true - нужно использовать цифры, false - не нужно, null - не важно
-    public bool? useUpper;
-    public bool? useLower;
-    public bool? useSpecialSymbols;
-    public Lang lang;
-}
+//public class ValidationOptions
+//{
+//    public int minLength;
+//    public int maxLength;
+//    public bool? useDigits; // true - нужно использовать цифры, false - не нужно, null - не важно
+//    public bool? useUpper;
+//    public bool? useLower;
+//    public bool? useSpecialSymbols;
+//    public Lang lang;
+//}
 
 public static class Password
 {
@@ -39,7 +42,8 @@ public static class Password
     {
         PrintRules();
 
-        ValidationOptions passOptions = new()
+
+        var loginOptions = new Validation.ValidationOptions
         {
             minLength = 8,
             maxLength = 16,
@@ -47,10 +51,10 @@ public static class Password
             useUpper = true,
             useLower = true,
             useSpecialSymbols = true,
-            lang = Lang.Both
+            lang = Lang.Rus
         };
-        
-        ValidationOptions loginOptions = new()
+
+        var passOptions = new Validation.ValidationOptions
         {
             minLength = 6,
             maxLength = 12,
@@ -58,12 +62,12 @@ public static class Password
             useUpper = true,
             useLower = true,
             useSpecialSymbols = false,
-            lang = Lang.Both
+            lang = Lang.Rus
         };
 
         var validatorlogin = new Validator(loginOptions);
         var validatorPass = new Validator(passOptions);
-        
+
         while (true)
         {
             Console.Write("Введите логин: ");
@@ -72,19 +76,19 @@ public static class Password
             Console.Write("Введите пароль: ");
             var password = Console.ReadLine() ?? "";
 
-            var loginValidationResult = validatorlogin.Validate(login);
+            var loginValidationResult = validatorlogin.Validate(login, isLogin: true);
             if (!loginValidationResult.IsValid)
             {
                 Console.WriteLine(loginValidationResult.Message);
             }
 
-            var passMessage = validatorPass.ValidatePass(password);
-            if (passMessage != null)
+            var passValidationResult = validatorPass.Validate(password);
+            if (!passValidationResult.IsValid)
             {
-                Console.WriteLine(passMessage);
+                Console.WriteLine(passValidationResult.Message);
             }
 
-            if (loginMessage == null && passMessage == null)
+            if (loginValidationResult.IsValid && passValidationResult.IsValid)
             {
                 Console.WriteLine("Вы зарегистрировались!");
                 break;
