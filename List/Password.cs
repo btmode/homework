@@ -1,5 +1,12 @@
 ﻿namespace List;
 
+class Color
+{
+    public int r;
+    public int g;
+    public int b;
+}
+
 public static class Password
 {
     private static void PrintRules()
@@ -18,15 +25,14 @@ public static class Password
     {
         PrintRules();
 
-
         var loginOptions = new ValidationOptions
         {
             minLength = 8,
             maxLength = 16,
-            useDigits = true,
-            useUpper = true,
-            useLower = true,
-            useSpecialSymbols = true,
+            useDigits = null,
+            useUpper = null,
+            useLower = null,
+            useSpecialSymbols = false,
             lang = Lang.En
         };
 
@@ -52,7 +58,7 @@ public static class Password
             Console.Write("Введите пароль: ");
             var password = Console.ReadLine() ?? "";
 
-            var loginValidationResult = validatorlogin.Validate(login, isLogin: true);
+            var loginValidationResult = validatorlogin.Validate(login);
             if (!loginValidationResult.IsValid)
             {
                 Console.WriteLine(loginValidationResult.Message);

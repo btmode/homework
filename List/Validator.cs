@@ -9,78 +9,69 @@ class Validator
         _options = options;
     }
 
-    public ValidationResult Validate(string value, bool isLogin = false)
+    // Todo
+    private string LangToString(Lang lang)
+    {
+        return "";
+    }
+
+    public ValidationResult Validate(string value)
     {
         var validationResult = new ValidationResult();
-        if (isLogin)
+        
+        if (!IsLengthValid(value))
         {
-            if (!IsLengthValid(value))
+            validationResult.IsValid = false;
+            validationResult.Message = $"Ошибка: длина должна быть от {_options.minLength} до {_options.maxLength}";
+        }
+        if (!IsLangValid(value))
+        {
+            validationResult.IsValid = false;
+            validationResult.Message = $"Ошибка: символы не соответствуют выбранному языку: {_options.lang}";
+        }
+
+        if (_options.useSpecialSymbols != null)
+        {
+            if (_options.useSpecialSymbols == true && !HasSpecialSymbols(value))
             {
                 validationResult.IsValid = false;
-                validationResult.Message = $"Ошибка: длина логина должна быть от {_options.minLength} до {_options.maxLength}";
+                validationResult.Message = "Ошибка: должен содержать хотя бы один специальный символ";
             }
-            if (!IsLangValid(value))
+            
+            if (_options.useSpecialSymbols == false && HasSpecialSymbols(value))
             {
                 validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: символы не соответствуют выбранному языку";
-            }
-            if (_options.useSpecialSymbols == false && HasSpecialSymbolLogin(value))
-            {
-                validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: логин не должен содержать специальный символ";
+                validationResult.Message = "Ошибка: строка не должна содержать специальные символы";
             }
         }
-        else
+        
+        // Todo: переписать с учетом значения null
+        if (_options.useDigits == true && !HasDigits(value))
         {
-            if (!IsLengthValid(value))
-            {
-                validationResult.IsValid = false;
-                validationResult.Message = $"Ошибка: длина пароля должна быть от {_options.minLength} до {_options.maxLength}";
-            }
-            if (!IsLangValid(value))
-            {
-                validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: символы не соответствуют выбранному языку";
-            }
-            if (_options.useSpecialSymbols == true && !HasSpecialSymbolPass(value))
-            {
-                validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: пароль должен содержать хотя бы один специальный символ";
-            }
-            if (_options.useDigits == true && !HasDigits(value))
-            {
-                validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: пароль должен содержать хотя бы одну цифру";
-            }
-            if (_options.useUpper == true && !HasUpper(value))
-            {
-                validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: пароль должен содержать хотя бы одну заглавную букву";
-            }
-            if (_options.useLower == true && !HasLower(value))
-            {
-                validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: пароль должен содержать хотя бы одну строчную букву";
-            }
-            if (!IsLangValid(value))
-            {
-                validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: символы не соответствуют выбранному языку";
-            }
+            validationResult.IsValid = false;
+            validationResult.Message = "Ошибка: строка должна содержать хотя бы одну цифру";
         }
+        if (_options.useUpper == true && !HasUpper(value))
+        {
+            validationResult.IsValid = false;
+            validationResult.Message = "Ошибка: должен содержать хотя бы одну заглавную букву";
+        }
+        if (_options.useLower == true && !HasLower(value))
+        {
+            validationResult.IsValid = false;
+            validationResult.Message = "Ошибка: должен содержать хотя бы одну строчную букву";
+        }
+
         return validationResult;
     }
 
     private bool ContainsRussianChars(string value)
     {
         var rus = "ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ";
-        bool containsRus = false;
-
         foreach (var i in value)
         {
             if (rus.Contains(i))
             {
-                containsRus = true;
                 return true;
             }
         }
@@ -105,8 +96,8 @@ class Validator
 
     private bool IsLangValid(string value)
     {
-        bool containsRus = ContainsRussianChars(value);
-        bool containsEn = ContainsEnChars(value);
+        var containsRus = ContainsRussianChars(value);
+        var containsEn = ContainsEnChars(value);
 
         if (_options.lang == Lang.Either)
             return true;
@@ -123,25 +114,13 @@ class Validator
         return false;
     }
 
+    // Todo
     private bool IsLengthValid(string value)
     {
         return value.Length >= _options.minLength && value.Length <= _options.maxLength;
     }
 
-    private bool HasSpecialSymbolLogin(string value)
-    {
-        var symbolList = "!#$%&()*+,-./:<=>?@[]_{|}";
-        foreach (var i in value)
-        {
-            if (symbolList.Contains(i))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private bool HasSpecialSymbolPass(string value)
+    private bool HasSpecialSymbols(string value)
     {
         var symbolList = "!#$%&()*+,-./:<=>?@[]_{|}";
         foreach (var i in value)
