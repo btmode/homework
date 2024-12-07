@@ -1,4 +1,4 @@
-﻿using static List.IsEnum;
+﻿using static List.LanguageEnum;
 
 
 namespace List;
@@ -50,10 +50,10 @@ public static class Password
         while (true)
         {
             Console.Write("Введите логин: ");
-            var login = Console.ReadLine();
+            var login = Console.ReadLine() ?? "";
 
             Console.Write("Введите пароль: ");
-            var password = Console.ReadLine();
+            var password = Console.ReadLine() ?? "";
 
             var loginValidationResult = validatorlogin.Validate(login, isLogin: true);
             if (!loginValidationResult.IsValid)

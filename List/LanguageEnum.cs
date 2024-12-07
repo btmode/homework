@@ -1,6 +1,6 @@
 ﻿namespace List;
 
-internal class IsEnum
+internal class LanguageEnum
 {
     public enum Lang
     {

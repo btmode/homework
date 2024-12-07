@@ -1,4 +1,4 @@
-﻿using static List.IsEnum;
+﻿using static List.LanguageEnum;
 
 namespace List;
 
