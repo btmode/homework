@@ -14,25 +14,36 @@ class Validator
     public ValidationResult Validate(string value, bool isLogin = false)
     {
         var validationResult = new ValidationResult();
-
-        if (!IsLengthValid(value))
+        if (isLogin)
         {
-            validationResult.IsValid = false;
-            validationResult.Message = $"Ошибка: длина должна быть от {_options.minLength} до {_options.maxLength}";
+            if (!IsLengthValid(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = $"Ошибка: длина логина должна быть от {_options.minLength} до {_options.maxLength}";
+            }
+            if (!IsLangValid(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = "Ошибка: символы не соответствуют выбранному языку";
+            }
+            if (_options.useSpecialSymbols == false && HasSpecialSymbolLogin(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = "Ошибка: логин не должен содержать специальный символ";
+            }
         }
-        if (_options.useSpecialSymbols == false && HasSpecialSymbolLogin(value))
+        else
         {
-            validationResult.IsValid = false;
-            validationResult.Message = "Ошибка: логин не должен содержать специальный символ";
-        }
-        if (!IsLangValid(value))
-        {
-            validationResult.IsValid = false;
-            validationResult.Message = "Ошибка: символы не соответствуют выбранному языку";
-        }
-
-        if (!isLogin)
-        {
+            if (!IsLengthValid(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = $"Ошибка: длина пароля должна быть от {_options.minLength} до {_options.maxLength}";
+            }
+            if (!IsLangValid(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = "Ошибка: символы не соответствуют выбранному языку";
+            }
             if (_options.useSpecialSymbols == true && !HasSpecialSymbolPass(value))
             {
                 validationResult.IsValid = false;
@@ -59,8 +70,6 @@ class Validator
                 validationResult.Message = "Ошибка: символы не соответствуют выбранному языку";
             }
         }
-
-
         return validationResult;
     }
 

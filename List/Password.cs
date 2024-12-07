@@ -3,27 +3,6 @@
 
 namespace List;
 
-// Вынести в отдельный файл
-//public enum Lang
-//{
-//    Rus,
-//    En,
-//    Both,
-//    Either // - любой, без разницы
-//}
-
-// Вынести в отдельный файл
-//public class ValidationOptions
-//{
-//    public int minLength;
-//    public int maxLength;
-//    public bool? useDigits; // true - нужно использовать цифры, false - не нужно, null - не важно
-//    public bool? useUpper;
-//    public bool? useLower;
-//    public bool? useSpecialSymbols;
-//    public Lang lang;
-//}
-
 public static class Password
 {
     private static void PrintRules()
@@ -51,7 +30,7 @@ public static class Password
             useUpper = true,
             useLower = true,
             useSpecialSymbols = true,
-            lang = Lang.Rus
+            lang = Lang.En
         };
 
         var passOptions = new Validation.ValidationOptions
@@ -62,7 +41,7 @@ public static class Password
             useUpper = true,
             useLower = true,
             useSpecialSymbols = false,
-            lang = Lang.Rus
+            lang = Lang.En
         };
 
         var validatorlogin = new Validator(loginOptions);
@@ -71,10 +50,10 @@ public static class Password
         while (true)
         {
             Console.Write("Введите логин: ");
-            var login = Console.ReadLine() ?? "";
+            var login = Console.ReadLine();
 
             Console.Write("Введите пароль: ");
-            var password = Console.ReadLine() ?? "";
+            var password = Console.ReadLine();
 
             var loginValidationResult = validatorlogin.Validate(login, isLogin: true);
             if (!loginValidationResult.IsValid)
