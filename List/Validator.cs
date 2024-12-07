@@ -1,12 +1,10 @@
-﻿using static List.LanguageEnum;
-
-namespace List;
+﻿namespace List;
 
 class Validator
 {
-    private Validation.ValidationOptions _options;
+    private ValidationOptions _options;
 
-    public Validator(Validation.ValidationOptions options)
+    public Validator(ValidationOptions options)
     {
         _options = options;
     }

@@ -1,7 +1,4 @@
-﻿using static List.LanguageEnum;
-
-
-namespace List;
+﻿namespace List;
 
 public static class Password
 {
@@ -22,7 +19,7 @@ public static class Password
         PrintRules();
 
 
-        var loginOptions = new Validation.ValidationOptions
+        var loginOptions = new ValidationOptions
         {
             minLength = 8,
             maxLength = 16,
@@ -33,7 +30,7 @@ public static class Password
             lang = Lang.En
         };
 
-        var passOptions = new Validation.ValidationOptions
+        var passOptions = new ValidationOptions
         {
             minLength = 6,
             maxLength = 12,
