@@ -9,62 +9,105 @@ class Validator
         _options = options;
     }
 
-    // Todo
-    private string LangToString(Lang lang)
-    {
-        return "";
-    }
 
     public ValidationResult Validate(string value)
     {
         var validationResult = new ValidationResult();
-        
+
         if (!IsLengthValid(value))
         {
             validationResult.IsValid = false;
-            validationResult.Message = $"Ошибка: длина должна быть от {_options.minLength} до {_options.maxLength}";
-        }
-        if (!IsLangValid(value))
-        {
-            validationResult.IsValid = false;
-            validationResult.Message = $"Ошибка: символы не соответствуют выбранному языку: {_options.lang}";
+            validationResult.Message += $"Ошибка: длина должна быть от {_options.minLength} до {_options.maxLength}";
         }
 
+        // Проверка языка
+        //if (!IsLangValid(value))
+        //{
+        //    validationResult.IsValid = false;
+        //    validationResult.Message += $"Ошибка: символы не соответствуют выбранному языку: {_options.lang}";
+        //}
+
+        
         if (_options.useSpecialSymbols != null)
         {
             if (_options.useSpecialSymbols == true && !HasSpecialSymbols(value))
             {
                 validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: должен содержать хотя бы один специальный символ";
+                validationResult.Message = "Ошибка: строка должна содержать хотя бы один специальный символ";
             }
-            
             if (_options.useSpecialSymbols == false && HasSpecialSymbols(value))
             {
                 validationResult.IsValid = false;
-                validationResult.Message = "Ошибка: строка не должна содержать специальные символы";
+                validationResult.Message += "Ошибка: строка не должна содержать специальные символы";
+            }
+        }
+
+
+        if (_options.useDigits != null)
+        {
+            if (_options.useDigits == true && !HasDigits(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = "Ошибка: строка должна содержать хотя бы одну цифру";
+            }
+            else if (_options.useDigits == false && HasDigits(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message += "Ошибка: строка не должна содержать цифры";
+            }
+        }
+
+        if (_options.useUpper != null)
+        {
+            if (_options.useUpper == true && !HasUpper(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = "Ошибка: строка должна содержать хотя бы одну заглавную букву";
+            }
+            else if (_options.useUpper == false && HasUpper(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message += "Ошибка: строка не должна содержать заглавные буквы";
             }
         }
         
-        // Todo: переписать с учетом значения null
-        if (_options.useDigits == true && !HasDigits(value))
+        if (_options.useLower != null)
         {
-            validationResult.IsValid = false;
-            validationResult.Message = "Ошибка: строка должна содержать хотя бы одну цифру";
-        }
-        if (_options.useUpper == true && !HasUpper(value))
-        {
-            validationResult.IsValid = false;
-            validationResult.Message = "Ошибка: должен содержать хотя бы одну заглавную букву";
-        }
-        if (_options.useLower == true && !HasLower(value))
-        {
-            validationResult.IsValid = false;
-            validationResult.Message = "Ошибка: должен содержать хотя бы одну строчную букву";
+            if (_options.useLower == true && !HasLower(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = "Ошибка: строка должна содержать хотя бы одну строчную букву";
+            }
+            else if (_options.useLower == false && HasLower(value))
+            {
+                validationResult.IsValid = false;
+                validationResult.Message = "Ошибка: строка не должна содержать строчные буквы";
+            }
         }
 
         return validationResult;
     }
 
+    //private string LangToString(Lang lang)
+    //{
+    //    if (_options.lang == Lang.Rus)
+    //    {
+    //        return lang.ToString();
+    //    }
+    //    if (_options.lang == Lang.En)
+    //    {
+    //        return lang.ToString();
+    //    }
+    //    if (_options.lang == Lang.Both)
+    //    {
+    //        return lang.ToString();
+    //    }
+    //    if (_options.lang == Lang.Either)
+    //    {
+    //        return lang.ToString();
+    //    }
+    //    return lang.ToString();
+    //}
     private bool ContainsRussianChars(string value)
     {
         var rus = "ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ";
@@ -81,13 +124,12 @@ class Validator
     private bool ContainsEnChars(string value)
     {
         var en = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-        bool containsEn = false;
+
 
         foreach (char i in value)
         {
             if (en.Contains(i))
             {
-                containsEn = true;
                 return true;
             }
         }
@@ -114,11 +156,9 @@ class Validator
         return false;
     }
 
-    // Todo
-    private bool IsLengthValid(string value)
-    {
-        return value.Length >= _options.minLength && value.Length <= _options.maxLength;
-    }
+
+    private bool IsLengthValid(string value) => value.Length >= _options.minLength && value.Length <= _options.maxLength;
+
 
     private bool HasSpecialSymbols(string value)
     {

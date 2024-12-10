@@ -27,24 +27,24 @@ public static class Password
 
         var loginOptions = new ValidationOptions
         {
-            minLength = 8,
-            maxLength = 16,
+            minLength = 6,
+            maxLength = 12,
             useDigits = null,
             useUpper = null,
             useLower = null,
-            useSpecialSymbols = false,
-            lang = Lang.En
+            useSpecialSymbols = null,
+            //lang = Lang.Either
         };
 
         var passOptions = new ValidationOptions
         {
-            minLength = 6,
-            maxLength = 12,
+            minLength = 8,
+            maxLength = 16,
             useDigits = true,
             useUpper = true,
             useLower = true,
-            useSpecialSymbols = false,
-            lang = Lang.En
+            useSpecialSymbols = true,
+            //lang = Lang.Either
         };
 
         var validatorlogin = new Validator(loginOptions);
@@ -59,13 +59,15 @@ public static class Password
             var password = Console.ReadLine() ?? "";
 
             var loginValidationResult = validatorlogin.Validate(login);
-            if (!loginValidationResult.IsValid)
+            Console.WriteLine($"Логин валиден: {loginValidationResult.IsValid}");
+            if (loginValidationResult.IsValid)
             {
                 Console.WriteLine(loginValidationResult.Message);
             }
 
             var passValidationResult = validatorPass.Validate(password);
-            if (!passValidationResult.IsValid)
+            Console.WriteLine($"Логин валиден: {loginValidationResult.IsValid}");
+            if (passValidationResult.IsValid)
             {
                 Console.WriteLine(passValidationResult.Message);
             }
