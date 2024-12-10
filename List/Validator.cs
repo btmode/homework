@@ -1,6 +1,6 @@
 ﻿namespace List;
 
-class Validator
+public class Validator
 {
     private ValidationOptions _options;
 

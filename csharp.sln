@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP", "OOP\OOP.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enum", "Enum\Enum.csproj", "{F3325450-815B-48A1-8034-A70463C31BDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{11888BC4-8B3D-4632-8816-E835254011EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{F3325450-815B-48A1-8034-A70463C31BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3325450-815B-48A1-8034-A70463C31BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3325450-815B-48A1-8034-A70463C31BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11888BC4-8B3D-4632-8816-E835254011EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11888BC4-8B3D-4632-8816-E835254011EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11888BC4-8B3D-4632-8816-E835254011EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11888BC4-8B3D-4632-8816-E835254011EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
