@@ -14,6 +14,8 @@ public class Validator
     {
         var validationResult = new ValidationResult();
 
+        Console.WriteLine(a);
+
         if (!IsLengthValid(value))
         {
             validationResult.IsValid = false;

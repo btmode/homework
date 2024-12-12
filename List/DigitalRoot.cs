@@ -2,36 +2,39 @@
 
 class DigitalRoot
 {
-    // По именованию метода больше похоже, что он должен возвращать bool.
-    // То есть ты назвал Has - имеет или не имеет. А метод находит цифровой корень числа, поэтому нужно его назвать Get или Find
     public static int GetRoot(int number)
     {
-        // Обработать ситуацию, когда число отрицательное, например -123
-        if (number < 10 && number < 0)
+        if (number < 0) throw new Exception("Не допускаются отрицательные значения");
+
+        if (number < 10)
             return number;
 
-        return GetRoot(IsRoot(number));
-    }
+        var sum = 0;
 
-    // Тут в целом не стоило разбивать на два отдельных метода, можно сделать все в одном
-    public static int IsRoot(int digit)
-    {
-        var number = 0;
-        while (digit != 0)
+        while (number != 0)
         {
-            number += digit % 10;
-            digit /= 10;
+            sum += number % 10;
+            number /= 10;
         }
 
-        return number;
+        return sum;
     }
 
     public static void Start()
     {
         Console.WriteLine("Введите число");
-        var number = int.Parse(Console.ReadLine());
 
-        int res = IsRoot(number);
-        Console.WriteLine($"Цифровой корень числа {number} равен {res}");
+        try
+        {
+            var number = int.Parse(Console.ReadLine());
+            var root = GetRoot(number);
+            Console.WriteLine($"Цифровой корень числа {number} равен {root}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Произошла ошибка: {e.Message}");
+        }
+
+        Console.WriteLine(123);
     }
 }
