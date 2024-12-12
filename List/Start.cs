@@ -6,7 +6,7 @@ class Start
     {
         // SplitElMassiveMax.Start();
         // FindTheReplaceToNum.Start();
-        Password.Start();
-        //DigitalRoot.Start();
+        //Password.Start();
+        DigitalRoot.Start();
     }
 }
