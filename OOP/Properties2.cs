@@ -116,74 +116,74 @@ class Pupil
 
 
 
-//class _Person
-//{
-//    // Свойство = private поле + 2 public метода (1 на получение этого поля, другой на установку значения)
-//    private string _name;
+    //class _Person
+    //{
+    //    // Свойство = private поле + 2 public метода (1 на получение этого поля, другой на установку значения)
+    //    private string _name;
 
-//    public string NameProperty
-//    {
-//        get
-//        {
-//            return _name;
-//        }
-//        set
-//        {
-//            _name = value;
-//        }
-//    }
+    //    public string NameProperty
+    //    {
+    //        get
+    //        {
+    //            return _name;
+    //        }
+    //        set
+    //        {
+    //            _name = value;
+    //        }
+    //    }
 
-//    public string NameField;
-//}
+    //    public string NameField;
+    //}
 
 
-//class _Person
-//{
-//    // Свойство = private поле + 2 public метода (1 на получение этого поля, другой на установку значения)
+    //class _Person
+    //{
+    //    // Свойство = private поле + 2 public метода (1 на получение этого поля, другой на установку значения)
 
-//    private string _name;
+    //    private string _name;
 
-//    public string Name
-//    {
-//        get
-//        {
-//            Console.WriteLine("Кто-то пытается получить значение Name");
-//            return _name;
-//        }
-//        set
-//        {
-//            Console.WriteLine("Кто-то пытается изменить значение Name");
-//            var MAX_NAME_LENGTH = 40;
+    //    public string Name
+    //    {
+    //        get
+    //        {
+    //            Console.WriteLine("Кто-то пытается получить значение Name");
+    //            return _name;
+    //        }
+    //        set
+    //        {
+    //            Console.WriteLine("Кто-то пытается изменить значение Name");
+    //            var MAX_NAME_LENGTH = 40;
 
-//            if (value.Length > MAX_NAME_LENGTH)
-//                value = value.Substring(0, MAX_NAME_LENGTH);
+    //            if (value.Length > MAX_NAME_LENGTH)
+    //                value = value.Substring(0, MAX_NAME_LENGTH);
 
-//            _name = value;
-//        }  
-//    }
-//}
+    //            _name = value;
+    //        }  
+    //    }
+    //}
 
-//class _Person
-//{
-//    // Свойство = private поле + 2 public метода (1 на получение этого поля, другой на установку значения)
+    class _Person
+    {
+        // Свойство = private поле + 2 public метода (1 на получение этого поля, другой на установку значения)
 
-//    private string _name = "Alex";
+        private string _name = "Alex";
 
-//    public string GetName()
-//    {
-//        return _name;
-//    }
+        public string GetName()
+        {
+            return _name;
+        }
 
-//    public void SetName(string newName)
-//    {
-//        var MAX_NAME_LENGTH = 40;
+        public void SetName(string newName)
+        {
+            var MAX_NAME_LENGTH = 40;
 
-//        if (newName.Length > MAX_NAME_LENGTH)
-//            newName = newName.Substring(0, MAX_NAME_LENGTH);
+            if (newName.Length > MAX_NAME_LENGTH)
+                newName = newName.Substring(0, MAX_NAME_LENGTH);
 
-//        _name = newName;
-//    }
-//};
+            _name = newName;
+        }
+    };
 
 
 

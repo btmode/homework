@@ -5,27 +5,29 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "showElMassive", "showElMassive\showElMassive.csproj", "{AD307416-32D6-47D1-A6C9-B7C84EEFFF44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindPositiveAndNegative", "FindPositiveAndNegative\FindPositiveAndNegative.csproj", "{2525B361-0806-43ED-BFD8-619770ED2878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindPositiveAndNegative", "FindPositiveAndNegative\FindPositiveAndNegative.csproj", "{2525B361-0806-43ED-BFD8-619770ED2878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowUpperAvg", "ShowUpperAvg\ShowUpperAvg.csproj", "{D584323D-75CA-4979-AE1C-7B9487E17858}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowUpperAvg", "ShowUpperAvg\ShowUpperAvg.csproj", "{D584323D-75CA-4979-AE1C-7B9487E17858}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SameElementMassive", "SameElementMassive\SameElementMassive.csproj", "{226E276B-4BC8-41B3-92C1-30DE7CDD6390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SameElementMassive", "SameElementMassive\SameElementMassive.csproj", "{226E276B-4BC8-41B3-92C1-30DE7CDD6390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Array", "Array\Array.csproj", "{A3F64DAB-A692-4024-A73B-C54158F26DBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Array", "Array\Array.csproj", "{A3F64DAB-A692-4024-A73B-C54158F26DBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List", "List\List.csproj", "{C4221E4C-988C-4A6E-8021-D26C9E3B5593}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "List", "List\List.csproj", "{C4221E4C-988C-4A6E-8021-D26C9E3B5593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "String", "String\String.csproj", "{647EB54B-9300-481D-8F7E-BEAA3D0A3099}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "String", "String\String.csproj", "{647EB54B-9300-481D-8F7E-BEAA3D0A3099}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Primitives", "Primitives\Primitives.csproj", "{2E35418D-6234-4D74-A0CA-CDA7A5B11EFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Primitives", "Primitives\Primitives.csproj", "{2E35418D-6234-4D74-A0CA-CDA7A5B11EFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "While", "While\While.csproj", "{103076DD-4174-420E-91EB-C34C6AC22679}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "While", "While\While.csproj", "{103076DD-4174-420E-91EB-C34C6AC22679}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP", "OOP\OOP.csproj", "{61788DD0-935F-4D0F-9055-5890B60B4AC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOP", "OOP\OOP.csproj", "{61788DD0-935F-4D0F-9055-5890B60B4AC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enum", "Enum\Enum.csproj", "{F3325450-815B-48A1-8034-A70463C31BDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enum", "Enum\Enum.csproj", "{F3325450-815B-48A1-8034-A70463C31BDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{11888BC4-8B3D-4632-8816-E835254011EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{11888BC4-8B3D-4632-8816-E835254011EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetSet", "GetSet\GetSet.csproj", "{39745842-C68B-4627-BFFC-C2B071969B49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{11888BC4-8B3D-4632-8816-E835254011EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11888BC4-8B3D-4632-8816-E835254011EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11888BC4-8B3D-4632-8816-E835254011EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39745842-C68B-4627-BFFC-C2B071969B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39745842-C68B-4627-BFFC-C2B071969B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39745842-C68B-4627-BFFC-C2B071969B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39745842-C68B-4627-BFFC-C2B071969B49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

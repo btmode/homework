@@ -5,15 +5,15 @@ public class Properties
     public static void Start()
     {
         var person = new Person();
-        
+
         // person.SetAge(-20);
         person.Age = -20;
-        
+
         // Console.WriteLine(person.GetAge());
         Console.WriteLine(person.Age);
     }
-    
-    public static int Sum1(int a , int b)
+
+    public static int Sum1(int a, int b)
     {
         return a + b;
     }
@@ -57,7 +57,7 @@ class Person
             _name = value;
         }
     }
-    
+
     public string _city;
     public string City
     {
