@@ -3,13 +3,10 @@ class BankAccount
 {
     private int _balance;
     private string _ownerName;
-    private DateTime _date;
 
-    public int MyProperty
-    {
-        get => _date;
-        set => _date = value;
-    }
+    // Автосвойство - свойство с уже реализованными гет и сет по умолчанию.
+    // При этом приватное поле создается само
+    public DateTime Date { get; set; }
 
     // Свойство = приватное поле + гет и сет
     public int Balance
@@ -24,7 +21,7 @@ class BankAccount
     }
 
     //public int GetBalance() => _balance;
-    //public void SetBalance(int n)
+    //public void SetBalance(int value)
     //{
     //    if (n < 0)
     //        throw new Exception("Баланс не может быть отрицательным");
