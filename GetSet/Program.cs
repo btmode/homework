@@ -3,7 +3,9 @@ class Program
 {
     static void Main()
     {
-       
-        BankAccount.Test.Start();
+
+        Test.Start();
+        var account = new BankAccount();
+        account.SetBalance(-100);
     }
 }
