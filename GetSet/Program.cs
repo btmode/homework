@@ -4,10 +4,10 @@ class Program
     static void Main()
     {
 
-        //Test.Start();
-        //var account = new BankAccount();
-        //account.SetBalance(-100);
-
-        GetSetTask.Start();
+        // Test.Start();      
+        //GetSetTask.Start();
+       // WeatherForecast.Start();
+        //InfoUser.Start();
+        //Students.Start();
     }
 }

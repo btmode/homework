@@ -32,7 +32,7 @@ namespace GetSet
 
             // value - это то значение, которое мы хотим положить в поле
         }
-        
+       
         public class Order
         {
             public int TotalCost = 0;
@@ -40,7 +40,7 @@ namespace GetSet
             private List<Product> _items;
 
             public List<Product> Items
-            {
+            {               
                 get => _items;
                 set
                 {
