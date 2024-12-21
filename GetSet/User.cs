@@ -2,27 +2,38 @@
 using System.Security.Cryptography;
 
 namespace GetSet;
+
 public class User
 {
-    public string _username;
-    public string _password;
-    public string _role;
+    private string _username;
+    private string _password;
+    private string _role;
 
-
-    public string GetUsername() => _username;
-
-    public void SetUsername(string username)
+    public string UserName
     {
-        _username = username;
+        get => _username;
+        set
+        {
+            _username = value;
+
+        }
+    }
+    public string Role
+    {
+        get => _role;
+        set => _role = value;
     }
 
-    public string GetPassword() => _password;
-
-    public void SetPassword(string password)
+    public string Password
     {
-        _password = HashPasswordSHA256(password);
 
+        get => _password;
+        set
+        {
+            _password = HashPasswordSHA256(value);
+        }
     }
+
     public string HashPasswordSHA256(string password)
     {
         using (SHA256 sha256 = SHA256.Create())
@@ -31,7 +42,7 @@ public class User
             byte[] hashBytes = sha256.ComputeHash(bytes);
 
 
-            StringBuilder builder = new StringBuilder();            
+            StringBuilder builder = new StringBuilder();
             foreach (byte b in hashBytes)
             {
                 builder.Append(b.ToString("x2"));
@@ -39,12 +50,6 @@ public class User
 
             return builder.ToString();
         }
-    }
-    public string GetRole() => _role;
-
-    public void SetRole(string role)
-    {
-        _role = role;
     }
 }
 
@@ -54,21 +59,23 @@ public class InfoUser
     {
         var user = new User();
 
-        Console.Write("Введите имя пользователя: ");
-        user.SetUsername(Console.ReadLine());
+        Console.WriteLine("Введите имя пользователя: ");
+        var username = Console.ReadLine();
+        user.UserName = username;
 
-        Console.Write("Введите пароль: ");
-        user.SetPassword(Console.ReadLine());
+        Console.WriteLine("Введите пароль: ");
+        var pass = Console.ReadLine();
+        user.Password = pass;
 
-        Console.Write("Введите роль: ");
-        user.SetRole(Console.ReadLine());
+        Console.WriteLine("Введите роль: ");
+        var role = Console.ReadLine();
+        user.Role = role;
 
 
         Console.Write("Информация о пользователе" + Environment.NewLine);
-        Console.Write($"Имя пользователя: {user.GetUsername()}" + Environment.NewLine);
-        Console.Write($"Ваш хешированный пароль: {user.GetPassword()}" + Environment.NewLine);
-        Console.Write($"Роль пользователя: {user.GetRole()}");
-
+        Console.Write($"Имя пользователя: {user.UserName}" + Environment.NewLine);
+        Console.Write($"Ваш хешированный пароль: {user.Password}" + Environment.NewLine);
+        Console.Write($"Роль пользователя: {user.Role}");
     }
 }
 
