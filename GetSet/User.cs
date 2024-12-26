@@ -5,24 +5,10 @@ namespace GetSet;
 
 public class User
 {
-    private string _username;
+    public string Username {  get; set; }
+    public string Role { get; set; }
+
     private string _password;
-    private string _role;
-
-    public string UserName
-    {
-        get => _username;
-        set
-        {
-            _username = value;
-
-        }
-    }
-    public string Role
-    {
-        get => _role;
-        set => _role = value;
-    }
 
     public string Password
     {
@@ -40,7 +26,6 @@ public class User
         {
             byte[] bytes = Encoding.UTF8.GetBytes(password);
             byte[] hashBytes = sha256.ComputeHash(bytes);
-
 
             StringBuilder builder = new StringBuilder();
             foreach (byte b in hashBytes)
@@ -61,7 +46,7 @@ public class InfoUser
 
         Console.WriteLine("Введите имя пользователя: ");
         var username = Console.ReadLine();
-        user.UserName = username;
+        user.Username = username;
 
         Console.WriteLine("Введите пароль: ");
         var pass = Console.ReadLine();
@@ -73,7 +58,7 @@ public class InfoUser
 
 
         Console.Write("Информация о пользователе" + Environment.NewLine);
-        Console.Write($"Имя пользователя: {user.UserName}" + Environment.NewLine);
+        Console.Write($"Имя пользователя: {user.Username}" + Environment.NewLine);
         Console.Write($"Ваш хешированный пароль: {user.Password}" + Environment.NewLine);
         Console.Write($"Роль пользователя: {user.Role}");
     }

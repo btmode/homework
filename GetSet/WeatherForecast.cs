@@ -2,15 +2,13 @@
 
 public class WeatherForecastTask
 {
-
     public static void Start()
     {
-
         var weather1 = new WeatherForecast("Москва");
         var weather2 = new WeatherForecast("Лондон");
 
-        Console.Write($"Город: {weather1.City}, Погода: {weather1.Title}, температура: {weather1._temperature} , влажность: {weather1._humidity}\n");
-        Console.Write($"Город: {weather2.City}, Погода: {weather2.Title}, температура: {weather2._temperature} , влажность: {weather2._humidity}\n");
+        Console.WriteLine($"Город: {weather1.City}, Погода: {weather1.Title}");
+        Console.WriteLine($"Город: {weather2.City}, Погода: {weather2.Title}");
     }
 }
 // _temperature, _humidity - генерировать
@@ -19,13 +17,12 @@ public class WeatherForecastTask
 // Для города Х должны быть параметры _temperature и _humidity Y и Z соответственно.
 class WeatherForecast
 {
-    public int _temperature;
-    public int _humidity;
-
+    private int _temperature;
+    private int _humidity;
 
     public string City { get; }
 
-    public string? Title
+    public string Title
     {
         get
         {

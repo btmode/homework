@@ -7,7 +7,7 @@ class Program
         // Test.Start();      
         //GetSetTask.Start();
         //WeatherForecastTask.Start();
-        //InfoUser.Start();
+        InfoUser.Start();
         //StudentsTask.Start();
     }
 }
