@@ -32,7 +32,7 @@ class SetValueTask
             }
             else
             {
-                Console.Write("Некоректно лох!" + Environment.NewLine);
+                Console.Write("Некоректно" + Environment.NewLine);
             }
 
         }
@@ -98,19 +98,5 @@ class SetValueTask
             Console.WriteLine($"Вы можете добавить если нажмете 4");
         }
     }
-    //private void SetValue(string key, string value)
-    //{
-
-    //    if (_dictionary.ContainsKey(key))
-    //    {
-    //        _dictionary[key] = value;
-    //    }
-    //    else
-    //    {
-    //        _dictionary.TryAdd(key, value);
-
-    //    }
-
-    //}
 }
 
