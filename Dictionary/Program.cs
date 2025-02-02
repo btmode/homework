@@ -2,14 +2,20 @@
 
 class Program
 {
+    private string text { get; set; }
+
+    public string Text
+    {
+
+    }
     public static void Main()
     {
         //var setValueTask = new SetValueTask();
         //setValueTask.Start();
-        //var studentsTask = new StudentsTask();
-        //studentsTask.Start();
-        var deletKey = new DeletKeyTask();
-        deletKey.Start();
+        var studentstask = new StudentsTask();
+        studentstask.Start();
+        //var deletKey = new DeletKeyTask();
+        //deletKey.Start();
     }
 
 }

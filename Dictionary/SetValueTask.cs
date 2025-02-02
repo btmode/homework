@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace Dictionary;
-class SetValueTask
+﻿namespace Dictionary;
+class SetValueTask 
 {
-    private Dictionary<string, string> _dictionary { get; set; } = new Dictionary<string, string>();
+
+    private Dictionary<string, string> _dictionary { get; set; } = [];
+    private List<string> _list { get; set; } = [];
+    private int[] _array { get; set; } = [];
+
     public void Start()
     {
         while (true)
@@ -15,26 +17,20 @@ class SetValueTask
                 {
                     SetValue();
                 }
-                if (choice == 2)
+                else if (choice == 2)
                 {
-                    SearchByKey(); break;
+                    SearchByKey();
                 }
-                if (choice == 3)
+                else if (choice == 3)
                 {
-                    PrintDictionary(); break;
+                    PrintDictionary();
                 }
-                if (choice == 4)
+                else if (choice == 4)
                 {
                     Console.Write("Вы вышли!"); return;
-
                 }
-
             }
-            else
-            {
-                Console.Write("Некоректно" + Environment.NewLine);
-            }
-
+            else { Console.Write("Некорректно"); }
         }
     }
     private void ShowMenu()
@@ -48,49 +44,36 @@ class SetValueTask
     }
     private void SetValue()
     {
-        Console.Write("Введите ключ: ");
-        string key = Console.ReadLine();
+        Console.Write("Введите ключ: ");     
+        var key = Console.ReadLine();
 
-        Console.Write("Введите значение: ");
-        string value = Console.ReadLine();
+        Console.Write("Введите значение: ");       
+        var value = Console.ReadLine();
 
-        if (_dictionary.ContainsKey(key) == false)
+        if (!_dictionary.ContainsKey(key))
         {
             _dictionary[key] = value;
         }
-        else
-        {
-            Console.Write("Такой key уже есть." + Environment.NewLine);
-
-
-        }
-
+        else { Console.Write("Такой key уже есть."); }
     }
 
     private void PrintDictionary()
     {
         var count = 0;
-        foreach (var elDict in _dictionary)
+        foreach (var el in _dictionary)
         {
-            count++;
-            if (_dictionary != null)
-            {
-                Console.Write($"Элемент{count}: {elDict}\n");
-            }
-            else
-            {
-                Console.Write("У вас пустые правила!"); return;
-            }
+            count++;           
+            Console.WriteLine($"Элемент {count}: {el}");          
         }
     }
     private void SearchByKey()
     {
-        Console.Write("Введите ключ для поиска: ");
-        string key = Console.ReadLine();
+        Console.Write("Введите ключ для поиска: ");        
+        var key = Console.ReadLine();
 
         if (_dictionary.ContainsKey(key))
         {
-            Console.WriteLine($"Значение для ключа: {key}: {_dictionary[key]}");
+            Console.WriteLine($"Значение для ключа: {key}: [{_dictionary[key]}]");
         }
         else
         {

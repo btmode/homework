@@ -26,6 +26,8 @@ bool - false
 string - null
 array - null
 object - null
+new List = null
+new Dictionary = null
 
 
 

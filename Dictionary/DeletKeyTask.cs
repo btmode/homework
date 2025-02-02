@@ -12,29 +12,45 @@ class DeletKeyTask
             ["г"] = 4,
         };
 
-        var deletKeys = new DeletKeys(dict, "а");
-    }
-}
+        //var x = new Dictionary<string, string>()
+        //{
+        //    ["kate"] = "name",
+        //};
 
-class DeletKeys
-{
-    private Dictionary<string, int> _dictionary { get; set; } = new Dictionary<string, int>();
-    public DeletKeys(Dictionary<string, int> dict, string key)
-    {
-        _dictionary = new Dictionary<string, int>(dict);
-        _dictionary = DeletKey(key);
+        DeleteKeysInPlace(dict, "а");
+        var newDictionary = DeleteKeysWithNewDictionary(dict, "а");
+
+        PrintDictionary(dict);
+        Console.WriteLine();
+        PrintDictionary(newDictionary);
     }
-    private Dictionary<string, int> DeletKey(string key)
+
+    private void DeleteKeysInPlace(Dictionary<string, int> dict, string key)
     {
-        if (_dictionary.ContainsKey(key))
+        dict.Remove(key);
+    }
+
+    private Dictionary<string, int> DeleteKeysWithNewDictionary(Dictionary<string, int> dict, string key)
+    {
+        Dictionary<string, int> copy = new(dict);
+        copy.Remove(key);
+        return copy;
+    }
+
+    private void PrintDictionary(Dictionary<string, int> dict)
+    {
+        foreach (var pair in dict)
         {
-            _dictionary.Remove(key);
+            Console.Write(pair);
         }
 
-        foreach (var keys in _dictionary)
-        {
-            Console.Write(keys);
-        }
-        return _dictionary;
+        
+    }
+
+    private int Sum(int a, int b) => a + b;
+    private int Sum(int a, int b, int c) => a + b + c;
+    private void Sum(int a, int b, int c, int d)
+    {
+        Console.WriteLine("Слишком много аргументов");
     }
 }

@@ -6,6 +6,7 @@ public class StudentsTask
 {
     public void Start()
     {
+        // var
         Students[] students = [
             new Students{Name ="Arina" , Age = 99},
             new Students{Name ="John" , Age = 20},
@@ -19,22 +20,31 @@ public class StudentsTask
             new Students{Name ="Jon" , Age = 43},
             new Students{Name ="Sultan" , Age = 11},
             new Students{Name ="Suliman" , Age = 1},
-
-            ];
+        ];
 
         var student = new Students();
         student._dictionary = student.GroupByAge(students);
+
+        foreach (var student in _dictionaty)
+        {
+
+        }
     }
 }
-
-class Students
+public class Students
 {
-    public Dictionary<string, int> _dictionary { get; set; } = new Dictionary<string, int>();
     public string Name { get; set; }
     public int Age { get; set; }
+}
+// Разделить на два класса: Student - Name, age, StudentHelper.GroupByAge(new List<Students>())
+public class StudentHelper
+{
+    public Dictionary<int, Students[]> _dictionary { get; set; } = [];
 
-    public Dictionary<string, int> GroupByAge(Students[] students)
+
+    public Dictionary<int, Students[]> GroupByAge(Students[] students)
     {
+        var studentsSort = new Dictionary<int, Students[]>();
 
         for (var i = 0; i < students.Length; i++)
         {
@@ -48,25 +58,11 @@ class Students
                 }
             }
         }
-        var studentsSort = new List<Students>(students);
-        _dictionary = PrintAllStudent(studentsSort);
-
-        return _dictionary;
+        studentsSort = students.();
+        return studentsSort;
     }
-    public Dictionary<string, int> PrintAllStudent(List<Students> studentsSort)
-    {
-        var dictionary = new Dictionary<string, int>();
 
-        Console.Write("Все ученики по возрастанию\n");
-
-        var count = 0;
-        foreach (var student in studentsSort)
-        {
-            count++;
-            Console.Write($"{count}) Ученик - Имя: {student.Name}, Возраст: {student.Age}" + Environment.NewLine);
-            dictionary[student.Name] = student.Age;
-        }
-        return dictionary;
-    }
 }
+
+
 
